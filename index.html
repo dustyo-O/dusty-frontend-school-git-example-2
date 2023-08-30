@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-default.min.css">
 </head>
 <body>
-    <h1>Практика по git</h1>
+    <h1>Урок: Практика по git</h1>
     <div class="geo-result"></div>
     <button class="geo-button">Определить</button>
     <script>
@@ -16,12 +16,18 @@
         const geoResult = document.querySelector('.geo-result');
 
         geoButton.addEventListener('click', function() {
+            geoResult.textContent = 'Загрузка...';
+            geoButton.disabled = true;
+
             navigator.geolocation.getCurrentPosition(function({ coords }) {
                 fetch(`https://eu1.locationiq.com/v1/reverse?key=${LOCATION_IQ_API_KEY}&lat=${coords.latitude}&lon=${coords.longitude}&format=json`)
                     .then(response => response.json())
                     .then(result => {
                         geoResult.textContent = result.address.road;
                     })
+                    .finally(() => {
+                        geoButton.disabled = false;
+                    });
             });
         });
     </script>
