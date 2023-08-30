@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-default.min.css">
+</head>
+<body>
+    <h1>Практика по git</h1>
+    <div class="geo-result"></div>
+    <button class="geo-button">Определить</button>
+    <script>
+        const LOCATION_IQ_API_KEY = prompt('Введите ключ API locationiq.com');
+        const geoButton = document.querySelector('.geo-button');
+        const geoResult = document.querySelector('.geo-result');
+
+        geoButton.addEventListener('click', function() {
+            navigator.geolocation.getCurrentPosition(function({ coords }) {
+                fetch(`https://eu1.locationiq.com/v1/reverse?key=${LOCATION_IQ_API_KEY}&lat=${coords.latitude}&lon=${coords.longitude}&format=json`)
+                    .then(response => response.json())
+                    .then(result => {
+                        geoResult.textContent = result.address.road;
+                    })
+            });
+        });
+    </script>
+</body>
+</html>
