@@ -26,6 +26,7 @@
                     .then(result => {
                         geoResult.textContent = result.address.road;
                     })
+                    .then(response => alert(`Вы находитесь на широте ${coords.latitude} и долготе  ${coords.longitude}`))
                     .finally(() => {
                         geoButton.disabled = false;
                     });
