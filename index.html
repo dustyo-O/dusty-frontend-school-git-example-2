@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-default.min.css">
 </head>
 <body>
-    <h1>Урок: Практика по git</h1>
+    <h1 class="header">Урок: Практика по git</h1>
     <div class="geo-result"></div>
-    <button class="geo-button">Определить</button>
+    <button class="geo-button">Найти меня</button>
     <script>
         const LOCATION_IQ_API_KEY = prompt('Введите ключ API locationiq.com');
-        const geoButton = document.querySelector('.geo-button');
-        const geoResult = document.querySelector('.geo-result');
+        const geoButtonClick = document.querySelector('.geo-button');
+        const geoResultClick = document.querySelector('.geo-result');
+        const header = document.querySelector('.header');
 
         geoButton.addEventListener('click', function() {
             geoResult.textContent = 'Загрузка...';
@@ -30,6 +31,9 @@
                     });
             });
         });
+        header.addEventListener('click', function() {
+            alert('Я не понял');
+        })
     </script>
 </body>
 </html>
